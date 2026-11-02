@@ -16,7 +16,7 @@ Publishing order that gives you a defensible date: Zenodo first (DOI, minutes), 
 ## Citation
 
 Anthony Phillips, *The variance of twin primes across residue classes: a conditional asymptotic and numerical evidence*, preprint, 2 November 2026.
-Zenodo DOI: TBD (added after the Zenodo record is created).
+Zenodo DOI: 10.5281/zenodo.23891109  —  https://doi.org/10.5281/zenodo.23891109
 Repository: https://github.com/justamancr/twin-primes
 
 ## Licenses
