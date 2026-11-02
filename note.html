@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Anthony Phillips (Independent researcher, Costa Rica; justaman@gmail.com)" />
+  <meta name="dcterms.date" content="2026-11-02" />
+  <title>The variance of twin primes across residue classes: a conditional asymptotic and numerical evidence</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    div.abstract {
+      margin: 2em 2em 2em 2em;
+      text-align: left;
+      font-size: 85%;
+    }
+    div.abstract-title {
+      font-weight: bold;
+      text-align: center;
+      padding: 0;
+      margin-bottom: 0.5em;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">The variance of twin primes across residue
+classes:<br />
+a conditional asymptotic and numerical evidence</h1>
+<p class="author">Anthony Phillips (Independent researcher, Costa Rica;
+justaman@gmail.com)</p>
+<p class="date">2 November 2026</p>
+<div class="abstract">
+<div class="abstract-title">Abstract</div>
+<p>Let <span class="math inline">\(T_c(x)\)</span> count the twin-prime
+centers <span class="math inline">\(n\le x\)</span> (both <span
+class="math inline">\(n-1\)</span> and <span
+class="math inline">\(n+1\)</span> prime) with <span
+class="math inline">\(n\equiv c \pmod q\)</span>, over the <span
+class="math inline">\(q-2\)</span> admissible classes, and let <span
+class="math inline">\(X^2\)</span> be the usual chi-squared statistic of
+the <span class="math inline">\(T_c\)</span> about their mean, per
+degree of freedom. Numerically, <span class="math inline">\(X^2\approx
+0.5\)</span>–<span class="math inline">\(0.7\)</span> for <span
+class="math inline">\(31\le q\le 1009\)</span> and <span
+class="math inline">\(10^8\le x\le 10^{10}\)</span>, well below the
+Poisson value <span class="math inline">\(1\)</span> and below the value
+<span class="math inline">\(\approx 0.93\)</span> obtained by thinning
+the primes at random to twin density, while the primes themselves give
+<span class="math inline">\(X^2\approx \log q/\log x\to 0\)</span>
+(Hooley’s conjecture). We show that the Hardy–Littlewood prime <span
+class="math inline">\(4\)</span>-tuple conjecture, applied in the manner
+of Montgomery and Soundararajan, predicts <span
+class="math inline">\(X^2\to \tfrac12\)</span> for every fixed <span
+class="math inline">\(q\)</span>, with corrections of relative size
+<span class="math inline">\(2\log q/\log x\)</span>. The mechanism is a
+double pole: the singular-series sum <span
+class="math inline">\(\sum_{h\le
+H}\mathfrak{S}(\{-1,1,h-1,h+1\})/(2C_2)^2 = H - \tfrac{1}{8C_2}\log^2 H
++ \dots\)</span> carries a <span class="math inline">\(\log^2 H\)</span>
+correction where the prime pair correlation carries <span
+class="math inline">\(\tfrac12\log H\)</span>, and the twin density
+<span class="math inline">\(1/\log^2 x\)</span> removes exactly two
+logarithms. The exact second-order prediction, computed from the
+singular series for all <span class="math inline">\(h\le x\)</span>,
+agrees with computation at <span
+class="math inline">\(x=10^7,10^8,10^9\)</span> within sampling noise
+and decreases toward <span class="math inline">\(\tfrac12\)</span> at
+the predicted rate. The statement appears to be an unrecorded corollary
+of known work; the ingredients are in Montgomery–Soundararajan (2004)
+and Kuperberg (2025). We also record, as context, a sequence of
+numerical experiments on a primorial-wheel formulation of the twin prime
+problem.</p>
+</div>
+</header>
+<h1 id="introduction">Introduction</h1>
+<p>Every prime above <span class="math inline">\(3\)</span> is of the
+form <span class="math inline">\(6k\pm 1\)</span>, so every prime is
+born as half of a candidate twin pair; the twin prime conjecture asks
+whether infinitely many pairs survive sieving by all larger primes.
+Tracking the centers <span class="math inline">\(n\)</span> with <span
+class="math inline">\(6\mid n\)</span>, both <span
+class="math inline">\(n\pm1\)</span> survive sieving by the primes <span
+class="math inline">\(\le p\)</span> exactly when <span
+class="math inline">\(n\not\equiv\pm1 \pmod r\)</span> for every prime
+<span class="math inline">\(r\le p\)</span>; each odd prime forbids two
+residues, which is the origin of the factor <span
+class="math inline">\(\prod(r-2)\)</span> and of the Hardy–Littlewood
+constant <span
+class="math display">\[C_2=\prod_{r\ge3}\frac{1-2/r}{(1-1/r)^2}=0.660161\ldots,\qquad
+\pi_2(x)\sim 2C_2\int_2^x\frac{dt}{\log^2 t}.\]</span></p>
+<p>This note concerns the <em>fluctuations</em> of twin primes across
+residue classes, rather than their count. For primes, the variance
+across the <span class="math inline">\(\varphi(q)\)</span> classes mod
+<span class="math inline">\(q\)</span> is classical: Hooley’s conjecture
+[3] that <span
+class="math inline">\(\sum_a\bigl(\psi(x;q,a)-x/\varphi(q)\bigr)^2\sim
+x\log q\)</span>, the Montgomery–Hooley theorem on average over <span
+class="math inline">\(q\)</span> [6, 3], Friedlander–Goldston [1], the
+analysis of its range by Fiorilli [2], and the function-field theorem of
+Keating and Rudnick [4]. For twin primes in arithmetic progressions, the
+published results are Barban–Davenport–Halberstam-type bounds averaged
+over many moduli (Lavrik, Maier–Pomerance, Mikawa, Balog; see the
+summary in [8]), not an asymptotic at a fixed modulus; Parry [9] remarks
+that no asymptotic formula for the variance of twins in progressions is
+recorded. The sums of singular series restricted to residue classes that
+such an asymptotic requires were established by Kuperberg [5],
+generalising Montgomery and Soundararajan [7], and applied there to the
+Lemke Oliver–Soundararajan bias; the twin-prime variance corollary is
+not stated.</p>
+<h2 class="unnumbered" id="statement">Statement</h2>
+<p>Fix a prime <span class="math inline">\(q\ge5\)</span>, write <span
+class="math inline">\(\kappa=q-2\)</span> for the number of admissible
+classes, <span class="math inline">\(t(n)\)</span> for the twin-center
+indicator, <span class="math inline">\(T_c=\#\{n\le x: t(n)=1,\ n\equiv
+c\ (q)\}\)</span> and <span class="math inline">\(T=\sum_c T_c\)</span>.
+Define <span class="math display">\[X^2(x;q)=\frac{1}{\kappa-1}\sum_{c\
+\mathrm{adm.}}\frac{(T_c-T/\kappa)^2}{T/\kappa}.\]</span> For a random
+sample of size <span class="math inline">\(T\)</span> from the
+admissible classes, <span class="math inline">\(E[X^2]=1\)</span>.</p>
+<div id="HL" class="conjecture">
+<p><strong>Conjecture 1</strong> (Hardy–Littlewood, uniform form).
+<em>For even <span class="math inline">\(h\ne0\)</span>, uniformly for
+<span class="math inline">\(|h|\le x\)</span>, <span
+class="math display">\[\sum_{n\le x} t(n)\,t(n+h) =
+\mathfrak{S}_4(h)\int_2^x\frac{dt}{\log^4 t}\,(1+o(1)),\qquad
+\mathfrak{S}_4(h)=\mathfrak{S}(\{-1,1,h-1,h+1\}).\]</span></em></p>
+</div>
+<div id="main" class="proposition">
+<p><strong>Proposition 2</strong>. <em>Assume Conjecture <a href="#HL"
+data-reference-type="ref" data-reference="HL">1</a>. Then for every
+fixed prime <span class="math inline">\(q\ge5\)</span>, <span
+class="math display">\[E\bigl[X^2(x;q)\bigr] = \frac12 +
+O\!\Bigl(\frac{\log q}{\log x}\Bigr)\qquad (x\to\infty).\]</span> More
+precisely, with <span
+class="math inline">\(\rho(h)=\mathfrak{S}_4(h)/(2C_2)^2\)</span> and
+<span class="math inline">\(A=1/(24C_2)\)</span>, <span
+class="math display">\[E\Bigl[\sum_c
+(T_c-T/\kappa)^2\Bigr]=T\Bigl(1-\frac1\kappa\Bigr)\Bigl[1-6A\,\frac{T}{x}\log^2
+x\,\bigl(1+O(\log q/\log x)\bigr)\Bigr],\]</span> and <span
+class="math inline">\(T/x=2C_2/\log^2x\,(1+O(1/\log
+x))\)</span>.</em></p>
+</div>
+<p>The argument is at the level of rigour of Montgomery–Soundararajan’s
+derivation of the variance of primes in short intervals: the leading
+term is derived, and the lower-order terms are evaluated numerically
+rather than closed in formula. Section <a href="#sec:derivation"
+data-reference-type="ref" data-reference="sec:derivation">2</a> gives
+the derivation, Section <a href="#sec:numerics"
+data-reference-type="ref" data-reference="sec:numerics">3</a> the
+numerical comparison, and Section <a href="#sec:context"
+data-reference-type="ref" data-reference="sec:context">4</a> the
+wheel-based experiments that led to the question.</p>
+<h1 id="sec:derivation">Derivation</h1>
+<h2 id="reduction-to-singular-series-sums">Reduction to singular-series
+sums</h2>
+<p>Since <span
+class="math inline">\(\sum_c(T_c-T/\kappa)^2=\sum_cT_c^2-T^2/\kappa\)</span>
+and <span class="math inline">\(\sum_cT_c^2\)</span> counts ordered
+pairs in a common class, <span class="math display">\[\label{eq:red}
+E\Bigl[\sum_c
+(T_c-T/\kappa)^2\Bigr]=T\Bigl(1-\frac1\kappa\Bigr)+2\sum_{h\ge1}\Bigl[\mathbf
+1_{q\mid h}-\frac1\kappa\Bigr]\rho(h)\,D(h),\]</span> where <span
+class="math inline">\(D(h)=\sum_{n\le x-h}\delta(n)\delta(n+h)\)</span>,
+<span class="math inline">\(\delta(n)=2C_2/\log^2n\)</span>, so <span
+class="math inline">\(D(h)\approx D(0)(1-h/x)\)</span> and <span
+class="math inline">\(D(0)=x\,(T/x)^2(1+O(1/\log x))\)</span>. The mean
+of <span class="math inline">\(\rho\)</span> over all <span
+class="math inline">\(h\)</span> is <span
+class="math inline">\(1\)</span> and over <span
+class="math inline">\(h\equiv0\ (q)\)</span> is <span
+class="math inline">\(q/\kappa\)</span>, the local factor at <span
+class="math inline">\(q\)</span>; hence the main terms of the two sums
+in <a href="#eq:red" data-reference-type="eqref"
+data-reference="eq:red">[eq:red]</a> cancel and everything depends on
+the second-order terms of <span class="math display">\[R(H)=\sum_{h\le
+H}\rho(h),\qquad R_q(H)=\sum_{h\le H,\ q\mid h}\rho(h).\]</span></p>
+<h2 id="ramanujan-expansion-of-rho">Ramanujan expansion of <span
+class="math inline">\(\rho\)</span></h2>
+<p>For <span class="math inline">\(p\ge5\)</span> the local factor of
+<span class="math inline">\(\rho\)</span> is <span
+class="math display">\[f_p(h)=\begin{cases}1/(1-2/p), &amp; p\mid h,\\
+(1-3/p)/(1-2/p)^2, &amp; h\equiv\pm2\ (p),\\ (1-4/p)/(1-2/p)^2, &amp;
+\text{otherwise},\end{cases}\]</span> and for <span
+class="math inline">\(p=2,3\)</span> the factor is <span
+class="math inline">\(6\cdot\mathbf 1_{6\mid h}\)</span>. Each <span
+class="math inline">\(f_p\)</span> has mean <span
+class="math inline">\(1\)</span> over residues; its Fourier coefficients
+at <span class="math inline">\(a\ne0\)</span> are <span
+class="math inline">\(|\mathrm{e}(a/p)+\mathrm{e}(-a/p)|^2/(p-2)^2\)</span>.
+Multiplying out, <span class="math display">\[\label{eq:ram}
+\rho(h)=6\cdot\mathbf 1_{6\mid
+h}\sum_{(d,6)=1}\frac{\mu^2(d)}{\varphi_2(d)^2}\prod_{p\mid
+d}\bigl[2c_p(h)+c_p(h+2)+c_p(h-2)\bigr],\qquad \varphi_2(d)=\prod_{p\mid
+d}(p-2),\]</span> with <span class="math inline">\(c_p\)</span> the
+Ramanujan sum. (Check: the bracket is <span
+class="math inline">\(2p-4\)</span>, <span
+class="math inline">\(p-4\)</span>, <span
+class="math inline">\(-4\)</span> in the three cases, reproducing <span
+class="math inline">\(f_p\)</span>.) The analogous expansion for prime
+pairs is <span
+class="math inline">\(\mathfrak{S}(h)=\sum_d\mu^2(d)c_d(h)/\varphi(d)^2\)</span>,
+and the method below applied to it yields <span
+class="math inline">\(\sum_{h\le H}\mathfrak{S}(h)=H-\frac12\log
+H+O(1)\)</span>, the Montgomery–Soundararajan value; this calibrates the
+method.</p>
+<h2 id="partial-sums-and-the-double-pole">Partial sums and the double
+pole</h2>
+<p>For <span class="math inline">\(d&gt;1\)</span> each bracket in <a
+href="#eq:ram" data-reference-type="eqref"
+data-reference="eq:ram">[eq:ram]</a> has mean zero over a period, so its
+partial sums over <span class="math inline">\(h\le H\)</span> do not
+grow. Writing the bracket in additive characters, the non-oscillating
+part of <span class="math inline">\(\sum_{h\le
+H}\mathrm{e}(bh/d)\)</span> is <span
+class="math inline">\(-\frac12\)</span>, and the cotangent terms cancel
+by the symmetry <span class="math inline">\(a\leftrightarrow -a\)</span>
+of the coefficients. The saturated value is <span
+class="math inline">\(-\frac12\)</span> times the sum of the Fourier
+coefficients, <span class="math display">\[\sum_{a\bmod
+d}^{*}\prod_{p\mid d}4\cos^2(2\pi a_p/p)=\prod_{p\mid
+d}(2p-4)=2^{\omega(d)}\varphi_2(d).\]</span> Hence, with <span
+class="math inline">\(K=H/6\)</span>, <span
+class="math display">\[\label{eq:R}
+R(H)=H-3\,S(K)+O(1),\qquad S(Y)=\sum_{\substack{1&lt;d\le Y\\
+(d,6)=1}}\frac{\mu^2(d)\,2^{\omega(d)}}{\varphi_2(d)}.\]</span> The
+Dirichlet series of the summand is <span
+class="math inline">\(\prod_{p\ge5}\bigl(1+2/((p-2)p^s)\bigr)=\zeta(1+s)^2G(s)\)</span>,
+a double pole, with <span
+class="math display">\[G(0)=\Bigl(1-\tfrac12\Bigr)^2\Bigl(1-\tfrac13\Bigr)^2\prod_{p\ge5}\frac{(p-1)^2}{p(p-2)}=\frac19\cdot\frac{3}{4C_2}=\frac1{12C_2}.\]</span>
+Therefore <span class="math inline">\(S(Y)=A\log^2Y+B\log
+Y+C+o(1)\)</span> with <span
+class="math display">\[A=\frac{G(0)}{2}=\frac{1}{24C_2}=0.06312\ldots\]</span>
+For primes the corresponding series <span
+class="math inline">\(\sum\mu^2(d)/\varphi(d)\)</span> has a simple
+pole, which is why the pair correlation carries <span
+class="math inline">\(\frac12\log H\)</span> rather than <span
+class="math inline">\(\log^2H\)</span>.</p>
+<h2 id="the-restricted-sum">The restricted sum</h2>
+<p>For <span class="math inline">\(q\mid h\)</span>, separate <span
+class="math inline">\(d\)</span> by whether <span
+class="math inline">\(q\mid d\)</span>. If <span
+class="math inline">\(q\nmid d\)</span> the bracket averages over the
+progression as before. If <span class="math inline">\(q\mid d\)</span>,
+the factor at <span class="math inline">\(q\)</span> is the bracket at
+<span class="math inline">\(h\equiv0\)</span>, namely <span
+class="math inline">\(2q-4=2\kappa\)</span>, divided by <span
+class="math inline">\(\kappa^2\)</span>, i.e. <span
+class="math inline">\(2/\kappa\)</span>; together the two cases give the
+factor <span class="math inline">\(1+2/\kappa=q/\kappa\)</span> and a
+sum over <span class="math inline">\(d\)</span> coprime to <span
+class="math inline">\(6q\)</span>: <span
+class="math display">\[R_q(H)=\frac H\kappa-3\,\frac
+q\kappa\,S_q\!\Bigl(\frac H{6q}\Bigr)+O(1),\]</span> with <span
+class="math inline">\(S_q\)</span> the sum <span
+class="math inline">\(S\)</span> restricted to <span
+class="math inline">\(q\nmid d\)</span>. Removing the Euler factor at
+<span class="math inline">\(q\)</span> multiplies the leading asymptotic
+by <span class="math inline">\(\kappa/q\)</span>, so <span
+class="math display">\[\label{eq:diff}
+R_q(H)-\frac{R(H)}\kappa=-\frac3\kappa\Bigl[(\kappa-1)A\log^2\tfrac
+H6-\kappa A\bigl(2\log q\log\tfrac H6-\log^2q\bigr)+O(\log
+H)\Bigr].\]</span></p>
+<h2 id="the-limit">The limit</h2>
+<p>Insert <a href="#eq:diff" data-reference-type="eqref"
+data-reference="eq:diff">[eq:diff]</a> into <a href="#eq:red"
+data-reference-type="eqref" data-reference="eq:red">[eq:red]</a> with
+the weight <span class="math inline">\(D(h)\approx D(0)(1-h/x)\)</span>
+by partial summation, using <span
+class="math inline">\(\frac1x\int_0^x\log^2(u/6)\,du=\log^2x+O(\log
+x)\)</span>: <span class="math display">\[E\Bigl[\sum_c
+(T_c-T/\kappa)^2\Bigr]=T\Bigl(1-\frac1\kappa\Bigr)\Bigl[1-6A\,\frac
+Tx\,\log^2x\,\bigl(1+O(\log q/\log x)\bigr)\Bigr].\]</span> With <span
+class="math inline">\(T/x=2C_2/\log^2x\,(1+O(1/\log x))\)</span> the
+logarithms cancel and <span class="math display">\[E[X^2]\longrightarrow
+1-12AC_2=1-12\cdot\frac1{24C_2}\cdot C_2=\frac12.\]</span> The twin
+prime constant cancels; the limit is universal in <span
+class="math inline">\(q\)</span>. The first correction, <span
+class="math inline">\(-(2\log q/\log x)\)</span> times the deficit,
+makes the ratio rise with <span class="math inline">\(q\)</span> at
+finite <span class="math inline">\(x\)</span>, as observed. For
+comparison, for primes the deficit is <span
+class="math inline">\(2\cdot\frac12\log(x/q)\cdot(1/\log x)=1-\log
+q/\log x\)</span>, so <span class="math inline">\(E[X^2]\approx\log
+q/\log x\to0\)</span>: one logarithm supplied, one removed, only the
+<span class="math inline">\(q\)</span>-dependent remainder survives.</p>
+<div class="remark">
+<p><strong>Remark 3</strong>. <em>Numerically, <span
+class="math inline">\(S(Y)-A\log^2Y\)</span> is linear in <span
+class="math inline">\(\log Y\)</span> (slope <span
+class="math inline">\(0.52\)</span>) for <span
+class="math inline">\(Y\le10^5\)</span>, confirming <span
+class="math inline">\(A\)</span>. The <span
+class="math inline">\(O(1)\)</span> in <a href="#eq:R"
+data-reference-type="eqref" data-reference="eq:R">[eq:R]</a> is an
+offset of about <span class="math inline">\(13\)</span>–<span
+class="math inline">\(15\)</span> from the range <span
+class="math inline">\(d&gt;H/6\)</span> where the Ramanujan partial sums
+are not saturated; it does not affect the leading term, but a complete
+treatment in the Montgomery–Soundararajan framework—with Conjecture <a
+href="#HL" data-reference-type="ref" data-reference="HL">1</a> carrying
+an explicit error <span
+class="math inline">\(O(x^{1/2+\varepsilon})\)</span>, the oscillatory
+terms bounded, and <span class="math inline">\(B\)</span>, <span
+class="math inline">\(C\)</span> and their <span
+class="math inline">\(q\)</span>-dependence written out from <span
+class="math inline">\(G&#39;(0)\)</span>, <span
+class="math inline">\(G&#39;&#39;(0)\)</span>—is left open. Kuperberg’s
+Theorem 1.2 [5] treats sums over all <span
+class="math inline">\(k\)</span>-subsets of <span
+class="math inline">\([1,h]\)</span> with prescribed residues; the sum
+needed here runs over the one-parameter family <span
+class="math inline">\(\{-1,1,h-1,h+1\}\)</span>, so the mechanism was
+applied directly rather than her theorem quoted. A rigorous conditional
+version should be a corollary of her framework.</em></p>
+</div>
+<h1 id="sec:numerics">Numerical comparison</h1>
+<p>The prediction can be evaluated without any asymptotics: compute
+<span class="math inline">\(\rho(h)\)</span> exactly for all <span
+class="math inline">\(h\le x\)</span> by a multiplicative sieve over the
+primes <span class="math inline">\(\le x\)</span>, and evaluate <a
+href="#eq:red" data-reference-type="eqref"
+data-reference="eq:red">[eq:red]</a> with <span
+class="math inline">\(D(h)\)</span> replaced by <span
+class="math inline">\((T/x)^2(x-h)\)</span>. Table <a href="#tab:pred"
+data-reference-type="ref" data-reference="tab:pred">1</a> compares this
+with the measured <span class="math inline">\(X^2\)</span> at <span
+class="math inline">\(x=10^7,10^8,10^9\)</span> (twin pairs with a
+member below <span class="math inline">\(1000\)</span> are excluded,
+because the wheel kills its own generators: the center of <span
+class="math inline">\((5,7)\)</span> is <span
+class="math inline">\(6\equiv1\pmod5\)</span>). The twin counts used
+were checked against the published values <span
+class="math inline">\(58{,}980\)</span>, <span
+class="math inline">\(440{,}312\)</span>, <span
+class="math inline">\(3{,}424{,}506\)</span> and <span
+class="math inline">\(27{,}412{,}679\)</span> below <span
+class="math inline">\(10^7,\dots,10^{10}\)</span>.</p>
+<div id="tab:pred">
+<table>
+<caption>Exact second-order Hardy–Littlewood prediction of <span
+class="math inline">\(E[X^2]\)</span> versus measurement. The sampling
+standard deviation of <span class="math inline">\(X^2\)</span> is <span
+class="math inline">\(\sqrt{2/(\kappa-1)}\)</span>: <span
+class="math inline">\(0.27\)</span> at <span
+class="math inline">\(q=31\)</span>, <span
+class="math inline">\(0.13\)</span> at <span
+class="math inline">\(q=113\)</span>, <span
+class="math inline">\(0.04\)</span> at <span
+class="math inline">\(q=1009\)</span>. The two <span
+class="math inline">\(10^9\)</span> outliers are the two lowest-dof rows
+and lie within one standard deviation.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span
+class="math inline">\(q\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(x=10^7\)</span> pred. / meas.</th>
+<th style="text-align: center;"><span
+class="math inline">\(x=10^8\)</span> pred. / meas.</th>
+<th style="text-align: center;"><span
+class="math inline">\(x=10^9\)</span> pred. / meas.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: center;">0.481 / 0.479</td>
+<td style="text-align: center;">0.485 / 0.460</td>
+<td style="text-align: center;">0.486 / 0.694</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">61</td>
+<td style="text-align: center;">0.528 / 0.614</td>
+<td style="text-align: center;">0.526 / 0.470</td>
+<td style="text-align: center;">0.523 / 0.721</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">113</td>
+<td style="text-align: center;">0.569 / 0.490</td>
+<td style="text-align: center;">0.561 / 0.578</td>
+<td style="text-align: center;">0.554 / 0.485</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">251</td>
+<td style="text-align: center;">0.619 / 0.563</td>
+<td style="text-align: center;">0.605 / 0.596</td>
+<td style="text-align: center;">0.593 / 0.586</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">503</td>
+<td style="text-align: center;">0.660 / 0.618</td>
+<td style="text-align: center;">0.640 / 0.651</td>
+<td style="text-align: center;">0.625 / 0.647</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1009</td>
+<td style="text-align: center;">0.699 / 0.709</td>
+<td style="text-align: center;">0.674 / 0.669</td>
+<td style="text-align: center;">0.655 / 0.629</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Three features are visible. The predictions match the measurements
+within noise at every modulus and scale. Every prediction decreases
+monotonically with <span class="math inline">\(x\)</span> (<span
+class="math inline">\(q=1009\)</span>: <span
+class="math inline">\(0.699\)</span>, <span
+class="math inline">\(0.674\)</span>, <span
+class="math inline">\(0.655\)</span>), at the rate the <span
+class="math inline">\(2\log q/\log x\)</span> correction implies, toward
+the limit <span class="math inline">\(\frac12\)</span>. And the measured
+values for the primes at the same <span class="math inline">\(x\)</span>
+are <span class="math inline">\(0.05\)</span>–<span
+class="math inline">\(0.21\)</span>, following <span
+class="math inline">\(\log q/\log x\)</span> (Figure <a href="#fig:rig"
+data-reference-type="ref" data-reference="fig:rig">1</a>). Thinning the
+primes at random to twin density gives <span
+class="math inline">\(X^2\approx1-\rho_{\mathrm{thin}}=0.93\)</span>, so
+the selection “<span class="math inline">\(p+2\)</span> is also prime”
+is far from independent across a class; the deficit from <span
+class="math inline">\(0.93\)</span> to <span
+class="math inline">\(0.6\)</span> is the pair-of-pairs correlation.</p>
+<figure id="fig:rig">
+<img src="fig3_rigidity.png" style="width:90%" />
+<figcaption><span class="math inline">\(X^2\)</span> for primes and for
+twin centers across residue classes mod <span
+class="math inline">\(q\)</span> at <span
+class="math inline">\(x=10^9\)</span>, with the exact second-order
+Hardy–Littlewood prediction (squares) and the conditional limit <span
+class="math inline">\(\frac12\)</span>.</figcaption>
+</figure>
+<p>Six other statistics of the twin centers to <span
+class="math inline">\(10^8\)</span> were tested and found to agree with
+the wheel-plus-Hardy–Littlewood model to the precision available:
+divisibility of centers by small primes (<span
+class="math inline">\(P(r\mid n)=1/(r-2)\)</span> to four digits), the
+<span class="math inline">\(2\)</span>-adic valuation (geometric), the
+counts of prime pairs at distances <span
+class="math inline">\(4,6,210,246\)</span> relative to distance <span
+class="math inline">\(2\)</span> (singular-series ratios to four
+digits), the two-point Möbius sum <span
+class="math inline">\(\sum\mu(n)\mu(n+2)\)</span> (random-walk size),
+the distribution of <span class="math inline">\(\omega(n)\)</span> among
+survivors at fixed sieving depth (no effect once size bias is removed),
+and a <span class="math inline">\(\lambda(a)\)</span>-weighted residual
+of <span class="math inline">\(\#\{b: ab\text{ a twin center}\}\)</span>
+against the wheel model (within <span
+class="math inline">\(1.7\sigma\)</span> in every dyadic block to <span
+class="math inline">\(a=16384\)</span>).</p>
+<h1 id="sec:context">Context: the wheel experiments</h1>
+<p>The question arose from a sequence of experiments on the
+primorial-wheel formulation. We record them briefly because they locate,
+with numbers, the point at which each classical method stops.</p>
+<h4 id="the-wheel.">The wheel.</h4>
+<p>Let <span class="math inline">\(p\#\)</span> be the primorial. The
+candidates for primes above <span class="math inline">\(p\)</span> in
+one period are the units mod <span class="math inline">\(p\#\)</span>,
+obtained recursively by tiling the units mod <span
+class="math inline">\((p^-)\#\)</span> <span
+class="math inline">\(p\)</span> times and removing <span
+class="math inline">\(p\)</span> times each of them; the count is <span
+class="math inline">\(\prod_{r\le p}(r-1)\)</span> (Euler, by the
+Chinese Remainder Theorem) and the twin-surviving count is <span
+class="math inline">\(\prod_{r\le p}(r-2)\)</span>. The ratio <span
+class="math inline">\(\prod_{r\ge3}(1-2/r)/(1-1/r)^2\)</span> converges
+to <span class="math inline">\(C_2\)</span>; computed from the wheel it
+reaches <span class="math inline">\(0.660162\)</span> by <span
+class="math inline">\(r=10^5\)</span>. The wheel for <span
+class="math inline">\(p\)</span> certifies primes only below the square
+of the next prime.</p>
+<h4 id="the-error-term-of-the-sieve.">The error term of the sieve.</h4>
+<p>In a window of length <span class="math inline">\(10^7\)</span>, the
+rule “each prime kills <span class="math inline">\(2/r\)</span> of the
+remaining centers” is exact to <span
+class="math inline">\(0.01\%\)</span> for <span
+class="math inline">\(r\le71\)</span> and drifts to <span
+class="math inline">\(-12\%\)</span> by <span
+class="math inline">\(r=1789\)</span>. Sieving to <span
+class="math inline">\(\sqrt x\)</span> with the product rule overcounts
+twins by <span
+class="math inline">\(4\mathrm{e}^{-2\gamma}\approx1.26\)</span> (and
+primes by <span
+class="math inline">\(2\mathrm{e}^{-\gamma}\approx1.12\)</span>); the
+measured ratio true/predicted is <span
+class="math inline">\(0.922\)</span> at <span
+class="math inline">\(10^7\)</span>, sliding toward <span
+class="math inline">\(0.79\)</span>.</p>
+<h4 id="bruns-bounds.">Brun’s bounds.</h4>
+<p>Truncating inclusion–exclusion at depth <span
+class="math inline">\(r\)</span> with error <span
+class="math inline">\(2^{\omega(d)}\)</span> per term gives bracketing
+bounds on the survivor count. At <span
+class="math inline">\(x=10^8\)</span> the lower bound is positive only
+for sieving depth <span class="math inline">\(z\le97\)</span> and turns
+negative at <span class="math inline">\(z=113=x^{0.257}\)</span>, while
+the true count stays above <span class="math inline">\(10^6\)</span>
+throughout (Figure <a href="#fig:brun" data-reference-type="ref"
+data-reference="fig:brun">2</a>). Survivors at that depth have all prime
+factors above <span class="math inline">\(113\)</span>, so each of <span
+class="math inline">\(n\pm1\)</span> has at most <span
+class="math inline">\(3\)</span> prime factors; certifying primes needs
+depth <span class="math inline">\(x^{1/2}\)</span>.</p>
+<figure id="fig:brun">
+<img src="fig1_brun.png" style="width:90%" />
+<figcaption>Brun’s bounds for the twin-center survivor count below <span
+class="math inline">\(10^8\)</span> as a function of sieving depth. The
+main term is accurate to <span class="math inline">\(1\%\)</span> at
+<span class="math inline">\(z=113\)</span>; the error budget <span
+class="math inline">\(\sum_j2^jC(m,j)\)</span> is what
+fails.</figcaption>
+</figure>
+<h4 id="gpy-weights.">GPY weights.</h4>
+<p>Replacing survival by the
+Goldston–Pintz–Y<span>ı</span>ld<span>ı</span>r<span>ı</span>m weight
+<span class="math inline">\(w(n)=\sum_{d\mid(n-1)(n+1),\,d\le
+R}\lambda_d\)</span> and computing <span
+class="math inline">\(\rho=S_1/(S_0\log x)\)</span> on the real primes
+at <span class="math inline">\(x=10^7\)</span>: for the pair, <span
+class="math inline">\(\rho=0.409\)</span> at <span
+class="math inline">\(R=x^{1/4}\)</span> (the provable level, <span
+class="math inline">\(\theta=\frac12\)</span>) and <span
+class="math inline">\(0.760\)</span> at <span
+class="math inline">\(R=x^{1/2}\)</span> (Elliott–Halberstam);
+extrapolating, <span class="math inline">\(\rho=1\)</span> would need
+<span class="math inline">\(R\approx x^{0.66}\)</span>, i.e. <span
+class="math inline">\(\theta\approx1.3&gt;1\)</span> (Figure <a
+href="#fig:gpy" data-reference-type="ref"
+data-reference="fig:gpy">3</a>). This is the numerical face of the known
+fact that pair weights cannot certify two primes at any admissible level
+of distribution, and that Maynard’s multidimensional weights need <span
+class="math inline">\(k\approx105\)</span> at <span
+class="math inline">\(\theta=\frac12\)</span>, whence bounded gaps of
+<span class="math inline">\(600\)</span>, later <span
+class="math inline">\(246\)</span>, but not <span
+class="math inline">\(2\)</span>.</p>
+<figure id="fig:gpy">
+<img src="fig2_gpy.png" style="width:90%" />
+<figcaption>GPY ratio <span class="math inline">\(\rho\)</span> for the
+pair <span class="math inline">\((n,n+2)\)</span> and for a <span
+class="math inline">\(6\)</span>-tuple of diameter <span
+class="math inline">\(16\)</span>, as a function of the sieve level
+<span class="math inline">\(R=x^a\)</span>, on the real primes to <span
+class="math inline">\(10^7\)</span>.</figcaption>
+</figure>
+<h4 id="summary.">Summary.</h4>
+<p>The main term is right (counts to four digits, fluctuations to within
+noise); honest counting cannot afford the depth (Brun dies at <span
+class="math inline">\(x^{0.26}\)</span>); weighting fixes the budget but
+caps the pair (<span class="math inline">\(\rho&lt;1\)</span> for all
+<span class="math inline">\(\theta\le1\)</span>). No statistic measured
+to <span class="math inline">\(10^{10}\)</span> departs from the
+wheel-plus-Hardy–Littlewood model, which is consistent with Selberg’s
+parity obstruction: any structure visible in residue statistics is Type
+I information, and Type I information provably cannot distinguish a
+prime from a product of two large primes.</p>
+<h1 class="unnumbered" id="reproducibility">Reproducibility</h1>
+<p>All computations are in plain Python with NumPy (and one C program
+for the exact <span class="math inline">\(\rho(h)\)</span> sums: <span
+class="math inline">\(0.2\)</span> s, <span
+class="math inline">\(2\)</span> s and <span
+class="math inline">\(34\)</span> s for <span
+class="math inline">\(x=10^7,10^8,10^9\)</span> on a 2-core machine).
+The scripts are available from the author.</p>
+<h1 class="unnumbered" id="acknowledgements">Acknowledgements</h1>
+<p>The computations, literature search and drafting were carried out
+with the assistance of Claude (Anthropic), an AI system, in an
+interactive session on 1–2 November 2026; the author is responsible for
+the content.</p>
+<div class="thebibliography">
+<p><span>99</span> J. B. Friedlander, D. A. Goldston, Variance of
+distribution of primes in residue classes,
+<em>Quart. J. Math. Oxford</em> (2) 47 (1996), 313–336. D. Fiorilli, The
+distribution of the variance of primes in arithmetic progressions,
+<em>Int. Math. Res. Not.</em> (2015); arXiv:1301.5663. C. Hooley, On the
+Barban–Davenport–Halberstam theorem: I–VI, <em>J. reine
+angew. Math.</em>, <em>J. London Math. Soc.</em> (1975–1976).
+J. P. Keating, Z. Rudnick, The variance of the number of prime
+polynomials in short intervals and in residue classes,
+<em>Int. Math. Res. Not.</em> 2014 (1), 259–288; arXiv:1204.0708.
+V. Kuperberg, Sums of singular series along arithmetic progressions and
+with smooth weights, <em>Int. J. Number Theory</em> 21 (2025), 53–74;
+arXiv:2301.06095. H. L. Montgomery, Primes in arithmetic progressions,
+<em>Michigan Math. J.</em> 17 (1970), 33–39. H. L. Montgomery,
+K. Soundararajan, Primes in short intervals, <em>Comm. Math. Phys.</em>
+252 (2004), 589–617. S. Palimar, Twin prime polynomials in function
+field, arXiv:1909.13745. T. Parry, An average theorem for tuples of
+<span class="math inline">\(k\)</span>-free numbers in arithmetic
+progressions, <em>Mathematika</em> 67 (2021), 1–18;
+arXiv:1912.03376.</p>
+</div>
+</body>
+</html>
